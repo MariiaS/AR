@@ -41,8 +41,13 @@ def func_x2(input_vec):
     vertices = [[x, x*x] for x in input_vec]
     return np.array(vertices)
 
-#def func_rand_normal(input_vec):
-#     ...
+def func_sine(input_vec):
+    vertices = [[x, np.sin(x)] for x in input_vec]
+    return np.array(vertices)
+
+def func_rand_normal(input_vec):
+    vertices = [[x, np.random.normal(loc=0, scale=0.1)] for x in input_vec]
+    return np.array(vertices)
 
 """Plotting function in OpenGL"""
 
@@ -60,36 +65,38 @@ def plot_func():
     glVertex2f(5.0, 0.0)
     glVertex2f(0.0, 5.0)
     glVertex2f(0.0, -5.0)
+    for i in range(-5, 6):
+        glVertex2f(-5.0, i)
+        glVertex2f(5.0, i)
+    for i in range(-5, 6):
+        glVertex2f(i, -5.0)
+        glVertex2f(i, 5.0)
     glEnd()
 
     # Set points to plot graphic
     vertices=func_x2(np.linspace(-5.0,5.0,101))
-    #vertices=func_rand_normal(np.linspace(-5.0,5.0,101))
+    vertices_sine = func_sine(np.linspace(-5.0, 5.0, 101))
+    vertices_norm=func_rand_normal(np.linspace(-5.0,5.0,101))
     
     # Commands # 5
     for i in range(len(vertices)-1):
         glBegin(GL_LINES)
         glColor3f(0.8,0.2,0.2)
-        # You can use the two lines below for older versions
-        # of pyOpenGL. For newer versions these two lines do not
-        # work properly, during execution the graphic window will
-        # open and quickly close.
-        # glVertex2fv(vertices[i])
-        # glVertex2fv(vertices[i+1])
-        # Comment the two lines above and uncomment the two lines
-        # below if you have newer version of pyOpenGL 
         glVertex2f(vertices[i,0],vertices[i,1])
         glVertex2f(vertices[i+1,0],vertices[i+1,1])
+        glVertex2f(vertices_sine[i, 0], vertices_sine[i, 1])
+        glVertex2f(vertices_sine[i + 1, 0], vertices_sine[i + 1, 1])
+        glVertex2f(vertices_norm[i, 0], vertices_norm[i, 1])
+        glVertex2f(vertices_norm[i + 1, 0], vertices_norm[i + 1, 1])
         glEnd()
     
     # Commands # 6
     for i in range(len(vertices)):
         glBegin(GL_POINTS)
         glColor3f(0.1,0.5,0.1)
-        # Same remarks as above concerning the lines with 
-        # glVertex2fv()
-        # glVertex2fv(vertices[i])
         glVertex2f(vertices[i,0],vertices[i,1])
+        glVertex2f(vertices_sine[i, 0], vertices_sine[i, 1])
+        glVertex2f(vertices_norm[i, 0], vertices_norm[i, 1])
         glEnd()
     
     # Commands # 7
