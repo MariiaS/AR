@@ -457,8 +457,6 @@ import numpy as np
 
 def DrawGLScene():
     global rtri, rquad
-    # glMatrixMode(GL_MODELVIEW)
-    # glPushMatrix()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);  # Clear The Screen And The Depth Buffer
     glLoadIdentity()  # Reset The View
     glTranslatef(-1.5, 0.0, -6.0)  # Move Left And Into The Screen
@@ -498,7 +496,6 @@ def DrawGLScene():
     glColor3f(0.0, 1.0, 0.0)  # Green
     glVertex3f(-1.0, -1.0, 1.0)  # Right Of Triangle (Left)
     glEnd()
-    # glPopMatrix()
 
     glLoadIdentity()
     glTranslatef(1.5, 0.0, -7.0)  # Move Right And Into The Screen
@@ -609,4 +606,3 @@ def main():
 if __name__ == '__main__':
     print("Hit ESC key to quit.")
     main()
-    # glMatrixMult
