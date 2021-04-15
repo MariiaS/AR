@@ -186,16 +186,6 @@ def draw():
     glutWireCube(1.0)
     glPopMatrix()
 
-    glTranslatef(-1.4, -2 * part_6, 0.0)
-    glTranslatef(0.0, -0.8, 0.0)
-    glRotatef(45, 0.0, 0.0, -0.3)
-    glTranslatef(0.0, 0.0, 0.0)
-    #glRotatef(fingers, 0.0, 1.0, 0.0)
-    glPushMatrix()
-    glScalef(0.9, 0.2, 0.2)
-    glutWireCube(1.0)
-    glPopMatrix()
-
 
     glPopMatrix()
     glutSwapBuffers()
